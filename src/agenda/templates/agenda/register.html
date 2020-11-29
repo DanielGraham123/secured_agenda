@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+Create An Account
+{% endblock title %}
+
+<!-- Using crispy forms -->
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div id="register" class="row">
+  <div class="col-md-3"></div>
+  <!-- Registration form -->
+  <div class="col-md-6">
+    <div class="card p-4">
+      <div class="card-header bg-transparent border-0 px-0">
+        <h4 class="py-0">Sign Up</h4>
+      </div>
+      <form method="post" class="form-group">
+        {% csrf_token %}
+        {{form | crispy}}
+        <button type="submit" class="btn btn-block btn-success">Register</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+{% endblock content %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+<section>
+    <div class="row">
+
+        <div class="col-md-12">
+            <h3 class="text-uppercase">{{ agenda_name }}</h3>
+
+            <small>{{ events | length }} events</small>
+        </div>
+
+    </div>
+</section>
+
+<section id="events-section" class="mt-3 mb-12">
+    <div class="row">
+
+        <div class="col-md-8">
+            <ul class="list-group">
+                {% for event in events %}
+                <li class="list-group-item list-group-item-action mb-2">
+                    <a href="" class="text-uppercase font-weight-bold">{{ event.title }}</a>
+                    <p class="mt-3">{{ event.description }}</p>
+
+                    <small class="mt-3 d-flex align-items-center float-left">
+                        <b class="mr-2">From: </b>{{event.start_date}} <b class="mx-1">at</b> {{ event.start_time }}
+                        <b class="mx-2">To: </b>{{event.end_date}} <b class="mx-1">at</b> {{ event.end_time }}
+                    </small>
+                    
+                    <div class="float-right">
+                        <a href={% url 'agenda:edit_event' event_id=event.id %} class="btn btn-secondary">Edit</a>
+                        <a href={% url 'agenda:delete_event' event_id=event.id %} class="btn btn-danger">Delete</a>
+                    </div>
+                </li>
+
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-md-4">
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            <div class="card p-4">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ eventform | crispy }}
+                    <button type="submit" class="btn btn-primary btn-block rounded-0 mt-4">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock content %}

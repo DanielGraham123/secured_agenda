@@ -1,0 +1,23 @@
+body {
+    background-color: #dee2e6 !important
+}
+main {
+    top: 5em;
+    position: relative;
+}
+
+a.logout {
+    color: #ffc107 !important;
+    text-decoration: none;
+}
+
+a.signup {
+    color: #fff !important;
+}
+
+footer {
+    line-height: 60px;
+    background-color: #f5f5f5;
+    margin-top: 7em
+}
+

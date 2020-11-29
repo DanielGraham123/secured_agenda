@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!--Custom css-->
+    <link rel="stylesheet" type="text/css" href={% static 'style.css' %}>
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href={% static 'css/bootstrap.min.css' %}>
+
+    <title>Agenda - {% block title %}{% endblock title %}</title>
+  </head>
+  <body>
+    
+    {% include 'navbar.html' %}
+    
+    <main role="main" class="container">
+      
+      {% comment %} {% if user.is_authenticated %} {% endcomment %}
+        {% block content %}
+        {% endblock content %}
+      {% comment %} {% else %}
+        <p>Login <a href="/admin">Here</a></p>
+      {% endif %} {% endcomment %}
+        
+    </main>
+    
+    {% include 'footer.html' %}
+  
+    <!-- jQuery -->
+    <script src={% static 'js/bootstrap.bundle.js' %}></script>
+    <script src={% static 'js/jquery.min.js' %}></script>
+    <script src={% static 'main.js' %}></script>
+  </body>
+</html>
